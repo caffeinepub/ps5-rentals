@@ -1,0 +1,52 @@
+{
+  "kind": "build_request",
+  "title": "Add Contentsquare tracking script to site <head> and provide install verification",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Insert the following Contentsquare tracking script into the <head> of the app so it loads on all routes/pages: <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-20"
+        ],
+        "quotes": [
+          "Copy the code.\n<script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>\n\nCopy\n2\nPaste the code into the <head> of every page where you want to track user behavior or collect feedback."
+        ]
+      },
+      "acceptanceCriteria": [
+        "frontend/index.html contains <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script> inside the <head> section.",
+        "The script is present in the final rendered page source when visiting the site in a browser."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a lightweight install verification check (English user-facing text) that confirms whether the Contentsquare script tag loads successfully and reports success/failure in the browser console without breaking the app if the script is blocked.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-20"
+        ],
+        "quotes": [
+          "To make sure everything is ready, verify that your code was installed."
+        ]
+      },
+      "acceptanceCriteria": [
+        "When the Contentsquare script loads successfully, the browser console shows an English confirmation message (e.g., \"Contentsquare tracking script loaded\").",
+        "If the Contentsquare script fails to load (e.g., blocked), the browser console shows an English warning message (e.g., \"Contentsquare tracking script failed to load\") and the app continues functioning normally."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify or remove the existing Google Analytics instrumentation in frontend/index.html."
+  ],
+  "nonGoals": [
+    "Do not add any additional third-party analytics tools beyond the provided Contentsquare script.",
+    "Do not add backend changes for Contentsquare (tracking must be frontend-only)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

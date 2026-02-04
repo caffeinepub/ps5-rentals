@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Motoko canister defining data types and APIs for contact submissions and rental inquiries, including pricing management and rental cost calculation. Stores submissions in maps keyed by timestamps and exposes query and update methods.",
+  "feature_evidence.json": "Machine-readable report documenting two implemented features related to Contentsquare tracking script insertion and verification, including affected files, components, tests, and confidence levels.",
+  "frontend-file-summaries.txt": "Prewritten summary map describing the purpose of major frontend files and components across the React application.",
+  "frontend/index.css": "Global Tailwind CSS setup defining design tokens with an OKLCH color system, light/dark theme variables, and base styles for the application.",
+  "frontend/index.html": "HTML entry point for the React SPA that loads Google Analytics and Contentsquare tracking scripts and mounts the app root.",
+  "frontend/src/App.tsx": "Root React component configuring TanStack Router routes, shared layout with header/footer, theme provider, and global toaster notifications.",
+  "frontend/src/components/Footer.tsx": "Footer UI component displaying branding, quick navigation links, contact information, and attribution with icons.",
+  "frontend/src/components/Header.tsx": "Responsive header with branding, desktop and mobile navigation using TanStack Router, and a prominent \"Rent Now\" call-to-action.",
+  "frontend/src/hooks/useActor.ts": "React Query hook that creates and manages a backend actor based on the current Internet Identity, invalidating dependent queries when the identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Authentication context and hooks for Internet Identity, handling login, logout, identity persistence, and exposing detailed login state to the app.",
+  "frontend/src/hooks/useQueries.ts": "Defines React Query hooks for fetching pricing and performing mutations to calculate rental costs, submit contact forms, and submit rental inquiries via a backend actor.",
+  "frontend/src/index.css": "Global Tailwind CSS setup defining design tokens, light/dark theme variables, PS5 brand colors, and base element styles.",
+  "frontend/src/main.tsx": "Application entry point that renders the React app with React Query and Internet Identity providers and imports global styles.",
+  "frontend/src/pages/AboutPage.tsx": "Static About page presenting the company mission, features, and rental policies using cards, icons, and themed sections.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with a form to submit messages via a mutation hook, form validation, toast notifications, and displayed contact details.",
+  "frontend/src/pages/HomePage.tsx": "Landing page with a hero section, call-to-action buttons, and featured rental categories that navigate to other routes.",
+  "frontend/src/pages/RentalsPage.tsx": "Interactive rentals page that fetches pricing, estimates and submits rental inquiries, validates input, and shows confirmation feedback.",
+  "frontend/src/utils/contentsquareVerification.ts": "Provides a safe utility to verify that the Contentsquare tracking script is present and has loaded, using DOM checks and the Performance API, and logs results to the console without impacting app execution.",
+  "frontend/tailwind.config.js": "Configures Tailwind CSS with dark mode, content paths, container settings, extensive theme extensions (colors, radius, animations), and plugins for typography, container queries, and animations.",
+  "project_state.json": "Stores structured metadata describing the project's current state, including schema/version info, a high-level summary, and a detailed list of existing frontend features with IDs, descriptions, and versions."
+}

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "PS5 Rentals is a frontend-only static multi-page website (no React and no backend) for browsing PS5 rental offerings (console, games, controllers), viewing daily pricing, calculating total rental cost client-side, and allowing users to contact manually. The site consists of separate HTML pages (Home, About, Contact, Rentals) linked with shared navigation, a shared CSS file, and a shared JavaScript file for the rental cost calculator. Google Analytics is installed on every page using the provided gtag.js tag (G-YR9GR62G68).",
+  "existing_features": [
+    {
+      "id": "IF-1",
+      "title": "Single-page app routing with shared layout",
+      "synonyms": [
+        "TanStack Router navigation",
+        "SPA pages"
+      ],
+      "description": "Defines a root layout with persistent Header and Footer and routes for Home, About, Contact, and Rentals pages using @tanstack/react-router.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "Responsive header navigation with mobile drawer",
+      "synonyms": [
+        "Navbar",
+        "Mobile menu sheet"
+      ],
+      "description": "Implements a sticky header with brand/logo, desktop navigation links, and a mobile slide-over Sheet menu, including a primary \"Rent Now\" CTA.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "Home page marketing sections",
+      "synonyms": [
+        "Landing page",
+        "Hero + categories"
+      ],
+      "description": "Shows a hero section, three category cards (consoles, games, controllers) with images/icons, and CTAs navigating users to the Rentals page.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "About page content and rental policies",
+      "synonyms": [
+        "Company mission page"
+      ],
+      "description": "Displays mission statement, feature/value cards (quality, flexible rentals, affordability, support), rental policy details, and service area information.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Contact page with backend form submission",
+      "synonyms": [
+        "Contact form",
+        "Support message submission"
+      ],
+      "description": "Provides a contact form (name/email/message) with required-field validation, loading state, toast notifications, and submission to the backend canister via React Query mutation.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Rentals page with pricing display and inquiry submission",
+      "synonyms": [
+        "Rental request form",
+        "Equipment catalog"
+      ],
+      "description": "Displays available equipment categories with daily rates (fetched from backend pricing), provides a rental inquiry form (item type, quantity, start date, duration), validates input, shows an estimated cost, submits inquiry to backend, and presents a confirmation state with the returned total cost.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "React Query hooks for canister operations",
+      "synonyms": [
+        "Backend query/mutation hooks"
+      ],
+      "description": "Implements reusable hooks to fetch pricing, calculate rental cost, submit contact form, and submit rental inquiry; mutations invalidate relevant cached query keys.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-8",
+      "title": "Actor lifecycle management tied to Internet Identity",
+      "synonyms": [
+        "Actor hook",
+        "Authenticated/anonymous actor"
+      ],
+      "description": "Creates and caches a canister actor via React Query; uses authenticated identity when available, otherwise creates an anonymous actor; invalidates/refetches dependent queries when the actor changes.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-9",
+      "title": "Internet Identity authentication provider",
+      "synonyms": [
+        "II login",
+        "AuthClient wrapper"
+      ],
+      "description": "Provides a React context for Internet Identity auth with login/logout, persistent identity loading on mount, delegation validity checks, configurable AuthClient options, and status flags for UI consumption.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-10",
+      "title": "Motoko backend for pricing and submissions",
+      "synonyms": [
+        "IC canister backend",
+        "Rental logic canister"
+      ],
+      "description": "Motoko actor defines item types and pricing, calculates rental cost, accepts contact submissions and rental inquiries (storing them by timestamp), returns current pricing, supports pricing updates, and exposes queries to list stored submissions/inquiries (inquiries sorted by timestamp).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-11",
+      "title": "Theming and styling system (Tailwind + OKLCH + dark mode)",
+      "synonyms": [
+        "Design system",
+        "PS5 brand theme"
+      ],
+      "description": "Uses Tailwind CSS with CSS variables in OKLCH, extended theme tokens (including ps5-blue/ps5-purple), dark mode via class, and next-themes ThemeProvider for theme management.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-12",
+      "title": "Google Analytics instrumentation",
+      "synonyms": [
+        "gtag integration"
+      ],
+      "description": "Includes Google Analytics tracking script (gtag.js) in the HTML entrypoint to track SPA usage.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "feature-insert-the-following-contentsquare-tracking-script-into-the-head-of-the-app-so-it-loads-on-all-routes-pages-script-src-https-t-contentsquare-net-uxa-f6cd018ba08fc-js-script",
+      "title": "Insert the following Contentsquare tracking script into the <head> of the app so it loads on all routes/pages: <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-lightweight-install-verification-check-english-user-facing-text-that-confirms-whether-the-contentsquare-script-tag-loads-successfully-and-reports-success-failure-in-the-browser-console-without-breaking-the-app-if-the-script-is-blocked",
+      "title": "Add a lightweight install verification check (English user-facing text) that confirms whether the Contentsquare script tag loads successfully and reports success/failure in the browser console without breaking the app if the script is blocked.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add Contentsquare tracking script (<script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>) into the <head> of every page to track user behavior/feedback, and verify installation",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "architectural_notes": [
+    "Project scope changed to frontend-only: separate static HTML pages (Home, About, Contact, Rentals) with shared navigation; no React SPA and no backend canister.",
+    "Rental total cost is calculated entirely client-side in JavaScript based on selected item type, quantity, and rental duration; user confirms by contacting manually (no payments, no backend submission).",
+    "Google Analytics is included on every page via the provided gtag.js snippet (Measurement ID: G-YR9GR62G68) placed immediately after the <head> element, with only one tag per page.",
+    "Contentsquare UXA tracking script must be added in the <head> of every static HTML page where behavior/feedback tracking is desired, using: <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "gameProjectType": "none",
+  "projectName": "PS5 Rentals",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

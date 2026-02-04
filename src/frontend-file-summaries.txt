@@ -1,0 +1,15 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, theme provider, and layout structure with Header/Footer wrapping all pages.",
+  "frontend/src/components/Header.tsx": "Responsive navigation header with PS5 branding, desktop/mobile navigation menus, and \"Rent Now\" CTA button.",
+  "frontend/src/components/Footer.tsx": "Footer component with quick links, contact information, and caffeine.ai attribution with heart icon.",
+  "frontend/src/pages/HomePage.tsx": "Home page featuring hero section with gaming setup image, three rental category cards (consoles, games, controllers), and CTA section.",
+  "frontend/src/pages/AboutPage.tsx": "About page displaying company mission, feature cards with icons, detailed rental policies, and service area information.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with form submission (name, email, message) connected to backend, contact information cards, and business hours display.",
+  "frontend/src/pages/RentalsPage.tsx": "Rentals page showing equipment categories with pricing, rental request form with item selection, quantity, dates, cost calculation, and confirmation message after submission.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including pricing retrieval, rental cost calculation, contact form submission, and rental inquiry submission with proper state invalidation.",
+  "frontend/src/index.css": "Global styles with OKLCH color system including custom PS5 brand colors (blue and purple) for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with PS5 brand colors (ps5-blue and ps5-purple) mapped to CSS custom properties.",
+  "frontend/index.html": "Main HTML entry point for the React SPA with Google Analytics (G-YR9GR62G68) and Contentsquare tracking scripts integrated in the head tag, ensuring analytics and user behavior tracking across all pages.",
+  "frontend/src/utils/contentsquareVerification.ts": "Utility that verifies the Contentsquare tracking script loaded successfully using Performance API and DOM checks, logging clear English success/failure messages to the browser console without breaking the app.",
+  "frontend/src/main.tsx": "Application entry point that initializes React with QueryClient and InternetIdentity providers, and runs Contentsquare verification on startup."
+}
