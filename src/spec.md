@@ -1,11 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Add the Contentsquare tracking script to the app so it loads on all pages, and provide a simple install verification that reports load success/failure.
+**Goal:** Update the global Mixpanel tracking snippet to use the provided project token and settings while keeping all other analytics snippets unchanged.
 
 **Planned changes:**
-- Insert the Contentsquare tracking script tag into `frontend/index.html` within the `<head>` so it applies to all routes/pages.
-- Add a lightweight verification check that logs an English success message to the browser console when the script loads and an English warning when it fails/gets blocked, without breaking the app.
-- Ensure existing Google Analytics instrumentation in `frontend/index.html` remains unchanged.
+- Replace the existing Mixpanel snippet in `frontend/index.html` with the exact user-provided script content, ensuring it calls `mixpanel.init('da58e366649ab3a9c5b1fc49681f9d76', { autocapture: true, record_sessions_percent: 100, })`.
+- Ensure the Mixpanel snippet appears exactly once and remains inside the `<head>` of `frontend/index.html` (right before `</head>`), alongside the existing Google Analytics, Microsoft Clarity, Contentsquare, and Smartlook snippets.
 
-**User-visible outcome:** The site includes Contentsquare tracking on all pages, and developers can confirm installation via clear console messages indicating whether the Contentsquare script loaded successfully.
+**User-visible outcome:** The app loads with Mixpanel initialized globally using the correct token and settings, without introducing console errors.

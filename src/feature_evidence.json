@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-insert-the-following-contentsquare-tracking-script-into-the-head-of-the-app-so-it-loads-on-all-routes-pages-script-src-https-t-contentsquare-net-uxa-f6cd018ba08fc-js-script",
-      "featureTitle": "Insert the following Contentsquare tracking script into the <head> of the app so it loads on all routes/pages: <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>.",
+      "featureId": "feature-update-the-mixpanel-tracking-snippet-in-frontend-index-html-to-use-the-exact-script-content-provided-by-the-user-including-calling-mixpanel-init-da58e366649ab3a9c5b1fc49681f9d76-autocapture-true-record-sessions-percent-100-and-keeping-the-snippet-placed-inside-the-head-right-before-the-closing-head-tag",
+      "featureTitle": "Update the Mixpanel tracking snippet in frontend/index.html to use the exact script content provided by the user, including calling mixpanel.init('da58e366649ab3a9c5b1fc49681f9d76', { autocapture: true, record_sessions_percent: 100, }) and keeping the snippet placed inside the <head> (right before the closing </head> tag).",
       "files": [
         "frontend/index.html"
       ],
@@ -15,25 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-lightweight-install-verification-check-english-user-facing-text-that-confirms-whether-the-contentsquare-script-tag-loads-successfully-and-reports-success-failure-in-the-browser-console-without-breaking-the-app-if-the-script-is-blocked",
-      "featureTitle": "Add a lightweight install verification check (English user-facing text) that confirms whether the Contentsquare script tag loads successfully and reports success/failure in the browser console without breaking the app if the script is blocked.",
-      "files": [
-        "frontend/src/utils/contentsquareVerification.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
+        "REQ-5"
       ],
       "confidence": "high"
     }

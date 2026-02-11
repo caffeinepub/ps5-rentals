@@ -1,7 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 15,
   "summary": "PS5 Rentals is a frontend-only static multi-page website (no React and no backend) for browsing PS5 rental offerings (console, games, controllers), viewing daily pricing, calculating total rental cost client-side, and allowing users to contact manually. The site consists of separate HTML pages (Home, About, Contact, Rentals) linked with shared navigation, a shared CSS file, and a shared JavaScript file for the rental cost calculator. Google Analytics is installed on every page using the provided gtag.js tag (G-YR9GR62G68).",
+  "architectural_notes": [
+    "Project scope changed to frontend-only: separate static HTML pages (Home, About, Contact, Rentals) with shared navigation; no React SPA and no backend canister.",
+    "Rental total cost is calculated entirely client-side in JavaScript based on selected item type, quantity, and rental duration; user confirms by contacting manually (no payments, no backend submission).",
+    "Google Analytics is included on every page via the provided gtag.js snippet (Measurement ID: G-YR9GR62G68) placed immediately after the <head> element, with only one tag per page.",
+    "Microsoft Clarity is added as an additional analytics script: include the provided Clarity snippet in the <head> of every page (one instance per page).",
+    "Mixpanel analytics should be added to the <head> of every static HTML page (placed right before </head>) using the provided snippet; project token must be configured.",
+    "Smartlook analytics/recording script should be added in the <head> of every static HTML page using the provided snippet (init token f647c2f391c5a02c88d908affc6d04eda2adbc20, region: 'eu'), with one instance per page.",
+    "Mixpanel snippet/project token has been provided and should be configured as: mixpanel.init('da58e366649ab3a9c5b1fc49681f9d76', { autocapture: true, record_sessions_percent: 100 }) on every static HTML page (right before </head>)."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
       "id": "IF-1",
@@ -133,18 +144,34 @@
       "version": 1
     },
     {
-      "id": "feature-insert-the-following-contentsquare-tracking-script-into-the-head-of-the-app-so-it-loads-on-all-routes-pages-script-src-https-t-contentsquare-net-uxa-f6cd018ba08fc-js-script",
-      "title": "Insert the following Contentsquare tracking script into the <head> of the app so it loads on all routes/pages: <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>.",
+      "id": "feature-add-the-provided-microsoft-clarity-tracking-snippet-to-the-html-head-so-it-loads-for-the-entire-app-all-spa-routes-use-the-exact-script-content-and-tag-id-vc3rnks6lt-as-supplied-by-the-user",
+      "title": "Add the provided Microsoft Clarity tracking snippet to the HTML <head> so it loads for the entire app (all SPA routes). Use the exact script content and tag ID \"vc3rnks6lt\" as supplied by the user.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-lightweight-install-verification-check-english-user-facing-text-that-confirms-whether-the-contentsquare-script-tag-loads-successfully-and-reports-success-failure-in-the-browser-console-without-breaking-the-app-if-the-script-is-blocked",
-      "title": "Add a lightweight install verification check (English user-facing text) that confirms whether the Contentsquare script tag loads successfully and reports success/failure in the browser console without breaking the app if the script is blocked.",
+      "id": "feature-add-the-provided-mixpanel-tracking-snippet-to-the-global-html-entrypoint-so-it-loads-for-the-entire-app-on-all-spa-routes-by-placing-it-right-before-the-closing-head-tag-in-frontend-index-html-use-the-exact-script-content-provided-by-the-user-including-the-placeholder-project-token-string-your-project-token-and-the-mixpanel-init-options-autocapture-true-record-sessions-percent-100",
+      "title": "Add the provided Mixpanel tracking snippet to the global HTML entrypoint so it loads for the entire app on all SPA routes by placing it right before the closing </head> tag in frontend/index.html. Use the exact script content provided by the user, including the placeholder project token string 'YOUR_PROJECT_TOKEN' and the Mixpanel init options (autocapture: true, record_sessions_percent: 100).",
       "reqIds": [
-        "REQ-2"
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-provided-smartlook-tracking-snippet-to-the-global-website-header-by-inserting-it-inside-the-head-section-of-frontend-index-html-using-the-exact-script-contents-provided-by-the-user-including-init-token-f647c2f391c5a02c88d908affc6d04eda2adbc20-and-region-eu",
+      "title": "Add the provided Smartlook tracking snippet to the global website header by inserting it inside the <head> section of frontend/index.html, using the exact script contents provided by the user (including init token \"f647c2f391c5a02c88d908affc6d04eda2adbc20\" and { region: 'eu' }).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-mixpanel-tracking-snippet-in-frontend-index-html-to-use-the-exact-script-content-provided-by-the-user-including-calling-mixpanel-init-da58e366649ab3a9c5b1fc49681f9d76-autocapture-true-record-sessions-percent-100-and-keeping-the-snippet-placed-inside-the-head-right-before-the-closing-head-tag",
+      "title": "Update the Mixpanel tracking snippet in frontend/index.html to use the exact script content provided by the user, including calling mixpanel.init('da58e366649ab3a9c5b1fc49681f9d76', { autocapture: true, record_sessions_percent: 100, }) and keeping the snippet placed inside the <head> (right before the closing </head> tag).",
+      "reqIds": [
+        "REQ-5"
       ],
       "version": 1
     }
@@ -152,19 +179,31 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add Contentsquare tracking script (<script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>) into the <head> of every page to track user behavior/feedback, and verify installation",
+      "summary": "Add Microsoft Clarity tracking script (tag vc3rnks6lt) into the <head> of every static HTML page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Rebuild and redeploy the application so it is available again after the draft expiration, including the new Microsoft Clarity <head> script.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add Mixpanel tracking snippet (init with project token, autocapture/session recording settings) right before closing </head> on every static HTML page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add Smartlook tracking snippet (init token f647c2f391c5a02c88d908affc6d04eda2adbc20, region eu) into the <head> of every static HTML page",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "architectural_notes": [
-    "Project scope changed to frontend-only: separate static HTML pages (Home, About, Contact, Rentals) with shared navigation; no React SPA and no backend canister.",
-    "Rental total cost is calculated entirely client-side in JavaScript based on selected item type, quantity, and rental duration; user confirms by contacting manually (no payments, no backend submission).",
-    "Google Analytics is included on every page via the provided gtag.js snippet (Measurement ID: G-YR9GR62G68) placed immediately after the <head> element, with only one tag per page.",
-    "Contentsquare UXA tracking script must be added in the <head> of every static HTML page where behavior/feedback tracking is desired, using: <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script>"
-  ],
-  "known_issues": [],
-  "isFixRequest": false,
   "gameProjectType": "none",
   "projectName": "PS5 Rentals",
   "clarification_mode": "instant",

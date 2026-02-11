@@ -1,40 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Contentsquare head script installation and verification",
+  "title": "Update Mixpanel tracking snippet token in frontend/index.html",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Insert the provided Contentsquare tracking script into the global HTML <head> so it loads on all routes.",
+      "id": "REQ-5",
+      "summary": "Replace the Mixpanel snippet in frontend/index.html with the exact user-provided script content and init configuration, keeping it inside <head> right before </head>, while preserving other analytics snippets.",
       "acceptanceCriteria": [
-        "frontend/index.html contains <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script> inside the <head> section.",
-        "The script is present in the final rendered page source when visiting the site in a browser."
+        "frontend/index.html contains exactly one Mixpanel snippet in the <head>.",
+        "The Mixpanel snippet includes mixpanel.init('da58e366649ab3a9c5b1fc49681f9d76', { autocapture: true, record_sessions_percent: 100, }) (i.e., the placeholder token 'YOUR_PROJECT_TOKEN' is replaced).",
+        "The Mixpanel snippet remains loaded globally for the entire app (i.e., included in frontend/index.html, not per-route).",
+        "The app builds and loads without console errors caused by the Mixpanel snippet."
       ],
       "file_operations": [
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Add <script src=\"https://t.contentsquare.net/uxa/f6cd018ba08fc.js\"></script> inside the <head> so it applies to all routes, ensuring the existing Google Analytics scripts remain unchanged and in place."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Add a lightweight, non-breaking verification check that logs English success/failure messages to the browser console based on whether the Contentsquare script resource loads.",
-      "acceptanceCriteria": [
-        "When the Contentsquare script loads successfully, the browser console shows an English confirmation message (e.g., \"Contentsquare tracking script loaded\").",
-        "If the Contentsquare script fails to load (e.g., blocked), the browser console shows an English warning message (e.g., \"Contentsquare tracking script failed to load\") and the app continues functioning normally."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/utils/contentsquareVerification.ts",
-          "operation": "create",
-          "description": "Create a small verification utility that checks for the Contentsquare script tag and/or loaded resource (e.g., via Performance Resource Timing) and logs clear English success/failure messages to the browser console without throwing if unavailable/blocked."
-        },
-        {
-          "path": "frontend/src/main.tsx",
-          "operation": "modify",
-          "description": "Import and run the Contentsquare verification utility during app startup (or after window load) so success/failure is reported to the console while ensuring failures are caught/handled and do not interrupt React rendering."
+          "description": "Update the existing Mixpanel tracking script block to match the exact snippet content provided by the user, including calling mixpanel.init('da58e366649ab3a9c5b1fc49681f9d76', { autocapture: true, record_sessions_percent: 100, }) and ensuring there is exactly one Mixpanel snippet placed in the <head> right before the closing </head> tag. Keep the existing Google Analytics, Microsoft Clarity (tag vc3rnks6lt), Contentsquare, and Smartlook snippets intact and present, and ensure the app builds/loads without Mixpanel-related console errors."
         }
       ]
     }
